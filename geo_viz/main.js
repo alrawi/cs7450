@@ -154,6 +154,7 @@ function geo_viz() {
       d.assistant_professors = +d.assistant_professors;
       d.associate_professors = +d.associate_professors;
       d.professors = +d.professors;
+      d.phd_students_with_RA_scholarship = +d.phd_students_with_RA_scholarship;
     });
 
     var map = d3.map(data);
@@ -253,7 +254,7 @@ function geo_viz() {
       var radii = [10, 5.5, 1.5];
       for (let index = 0; index < radii.length; index++) {
         var radius = radii[index];
-        var xpos = 1130;
+        var xpos = 1100;
         var ypos = 20 + (index + 1) * 18;
         var textypos = 25 + (index + 1) * 18;
         var legendVal = invradScale(radius).toFixed(2);
@@ -275,14 +276,14 @@ function geo_viz() {
         var legendPrefix = "$";
         svg.append("text")
           .text(legendPrefix + legendVal)
-          .attr("transform", "translate(1160," + textypos + ")")
+          .attr("transform", "translate(1140," + textypos + ")")
           .attr("class", "legendText")
       }
       // Add text describing legends
       legendypos = textypos + 30
       svg.append("text")
         .text("Out-of-State Average Tuition")
-        .attr("transform", "translate(1100," + legendypos + ")")
+        .attr("transform", "translate(1070," + legendypos + ")")
         .attr("class", "legendAnno")
 
       // We're going to update the list of colleges in thr scroll functionality
@@ -373,6 +374,9 @@ function geo_viz() {
           svg.selectAll("line")
             .remove()
 
+          svg.selectAll(".linkLegend")
+            .remove()
+
           for (let index = 0; index < source_xy.length; index++) {
             svg.append("line")
               .attr("x1", source_xy[index][0])
@@ -382,6 +386,13 @@ function geo_viz() {
               .style("stroke", "#8856a7")
               .style("stroke-width", weights[index] + 2);
           }
+
+          svg.append("text")
+            .text("The links indicate where doctoral graduate students end up teaching")
+            .attr("x", 400)
+            .attr("y", 700)
+            .attr("font-size", "17px")
+            .attr("class", "linkLegend");
         })
 
       }
@@ -454,7 +465,7 @@ function geo_viz() {
         var radii = [10, 5.5, 1.5];
         for (let index = 0; index < radii.length; index++) {
           var radius = radii[index];
-          var xpos = 1130;
+          var xpos = 1100;
           var ypos = 20 + (index + 1) * 18;
           var textypos = 25 + (index + 1) * 18;
           var legendVal = invradScale(radius).toFixed(2);
@@ -464,7 +475,7 @@ function geo_viz() {
           }
           svg.append("text")
             .text(legendPrefix + legendVal)
-            .attr("transform", "translate(1160," + textypos + ")")
+            .attr("transform", "translate(1140," + textypos + ")")
             .attr("class", "legendText")
         }
         // Add text describing legends
@@ -472,7 +483,7 @@ function geo_viz() {
         legendAnnoText = key_label[selectedOption]
         svg.append("text")
           .text(legendAnnoText)
-          .attr("transform", "translate(1100," + legendypos + ")")
+          .attr("transform", "translate(1070," + legendypos + ")")
           .attr("class", "legendAnno")
       }
 
@@ -493,6 +504,18 @@ function geo_viz() {
         .text("List of Universities")
         .attr("x", 100)
         .attr("y", 180);
+
+      svg.append("text")
+        .text("Hover over a university (bubble) to get a quick summary")
+        .attr("x", 400)
+        .attr("y", 50)
+        .attr("font-size", "20px");
+
+      svg.append("text")
+        .text("Click on a university (bubble) to get detailed information")
+        .attr("x", 400)
+        .attr("y", 100)
+        .attr("font-size", "20px");
     });
 
     // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
