@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="./circle-legend.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" href="style_geo.css">
+<style type="text/css">
+
+</style>
+<h1>University Distribution</h1>
+</head>
+<body>
+<div id="main">
+		<div style="position: absolute; top: 100px; left: 30px;">
+            <select class="custom-select small" id="compareSelect">
+                <option value="out_of_state_average_tuition_FT_grads">Out-of-State Tuition</option>
+                <option value="student_to_faculty_ratio">Student-to-Faculty Ratio</option>
+				<option value="assistant_professors">Assistant Professors</option>
+				<option value="associate_professors">Associate Professors</option>
+				<option value="professors">Professors</option>
+            </select>
+        </div>
+        <svg id="mainSVG" width="1320" height="720" style="border: 1px solid #777;">
+            <foreignobject class="node" x="9" y="200" width="310" height="360">
+                <div id="scrollContainer">
+                    <svg id="scrollSVG" width="310" height="360"></svg>
+                </div>
+            </foreignobject>
+        </svg>
+    </div>
+<script type="text/javascript", src="./main.js"></script>
+</body>
+</html>
